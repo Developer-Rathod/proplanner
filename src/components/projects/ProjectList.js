@@ -3,7 +3,12 @@ import ProjectSummary from './ProjectSummary'
 
 const ProjectList = () => {
     return (
-        <ProjectSummary />
+        <div className="project-list section">  
+            <ProjectSummary />
+            <ProjectSummary />
+            <ProjectSummary />
+
+        </div>    
     )
 }
 
