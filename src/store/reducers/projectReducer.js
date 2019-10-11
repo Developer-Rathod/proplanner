@@ -1,5 +1,9 @@
 
-const initState = {};
+const initState = {
+    projects:[
+        
+    ]
+};
 
 const projectReducer = (state = initState,action) => {
     return  state
