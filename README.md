@@ -1,5 +1,9 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## version issue
+npm uninstall react-redux react-redux-firebase redux-firestore firebase
+npm install react-redux@5.1.1 react-redux-firebase@2.1.6 redux-firestore@0.5.7 firebase@5.3.0
+
 ## Available Scripts
 
 In the project directory, you can run:
