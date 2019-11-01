@@ -4,7 +4,7 @@ import 'firebase/auth'; // authentication
 
 // Initialize firebase configuration from firebase project from google.
 
-var firebaseConfig = {
+var config = {
     apiKey: process.env.REACT_APP_API_KEY,
     authDomain: process.env.REACT_APP_AUTH_DOMAIN,
     databaseURL: process.env.REACT_APP_DATABASE_URL,
@@ -14,9 +14,9 @@ var firebaseConfig = {
     appId: process.env.REACT_APP_APP_ID,
     measurementId: process.env.REACT_APP_MEASUREMENT_ID
   };
-
+  // Initialize Firebase
+  firebase.initializeApp(config);
   firebase.firestore().settings({ timestampsInSnapshots: true })
 
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
+  
   export default firebase

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Notifications from './Notifications';
 import ProjectList from '../projects/ProjectList';
-import { connect } from 'react-redux'; //glu lib connect to redux store to react
+import { connect } from 'react-redux'; //glue lib connect to redux store to react
 
 class Dashboard extends Component {
     render() {
