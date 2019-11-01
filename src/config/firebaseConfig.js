@@ -1,19 +1,22 @@
-import firebase from 'firebase/app';
-import 'firebase/firestore'; //databse
+import firebase from 'firebase/app'; // app
+import 'firebase/firestore'; //database
 import 'firebase/auth'; // authentication
 
-// Initalize firebase configuration from firebase project from google.
+// Initialize firebase configuration from firebase project from google.
+
 var firebaseConfig = {
-    apiKey: "AIzaSyBQ5aej_-hy90qN9rGDDx-GG8IxPeb1yHo",
-    authDomain: "proplanner-project.firebaseapp.com",
-    databaseURL: "https://proplanner-project.firebaseio.com",
-    projectId: "proplanner-project",
-    storageBucket: "proplanner-project.appspot.com",
-    messagingSenderId: "179065380579",
-    appId: "1:179065380579:web:b30dadc65958ac1614efd6",
-    measurementId: "G-Z20Z17F3TW"
+    apiKey: process.env.REACT_APP_API_KEY,
+    authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+    databaseURL: process.env.REACT_APP_DATABASE_URL,
+    projectId: process.env.REACT_APP_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+    appId: process.env.REACT_APP_APP_ID,
+    measurementId: process.env.REACT_APP_MEASUREMENT_ID
   };
+
   firebase.firestore().settings({ timestampsInSnapshots: true })
+
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   export default firebase
