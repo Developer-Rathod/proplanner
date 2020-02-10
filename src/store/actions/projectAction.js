@@ -1,3 +1,4 @@
+import { getFirestore } from "redux-firestore";
 
 export const createProject = (project) => {
     /* //what we usually do which just return actions
@@ -5,13 +6,23 @@ export const createProject = (project) => {
             type: 'CREATE_PROJECT',
             project: project
         } */
-    return (dispatch, getState,) => {
-        
+    return (dispatch, getState,) => {        
         //make async call to database firestore
+        const firestore = getFirestore();
+        firestore.collection('projects').add({
+          ...project,
+          authorFirstName: 'Kalpana',
+          authorLastName: 'Rathod',
+          authorId: 12345,
+          createdAt: new Date()
+        }).then(() => {
+          dispatch({ type: 'CREATE_PROJECT_SUCCESS' }); //posing dispatch here
+        }).catch(err => {
+          dispatch({ type: 'CREATE_PROJECT_ERROR' }, err);
+        });
+      }
+    };
 
-        dispatch({ type: 'CREATE_PROJECT', project }); //posing the dispatch
-    }
-};
  export const deleteProject = (id) =>{
      return (dispatch, getState) => {
 

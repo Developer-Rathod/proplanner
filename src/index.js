@@ -15,14 +15,17 @@ import firebaseConfig from './config/firebaseConfig';
 const store = createStore(rootReducer,
   compose(
     applyMiddleware(thunk.withExtraArgument({ getFirebase, getFirestore })),
-    reactReduxFirebase(firebaseConfig), 
-    reduxFirestore(firebaseConfig) 
+    reduxFirestore(firebaseConfig),
+    reactReduxFirebase(firebaseConfig, {attachAuthIsReady: true})
   )
 );
-ReactDOM.render(<Provider store={store} ><App /></Provider>, document.getElementById('root')
-);
+
+store.firebaseAuthIsReady.then(()=>{
+  ReactDOM.render(<Provider store={store} ><App /></Provider>, document.getElementById('root'));
+  serviceWorker.unregister();
+})// wait untill firebase Auth is ready and then render the app in dom
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+

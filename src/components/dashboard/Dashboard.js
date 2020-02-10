@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import Notifications from './Notifications';
 import ProjectList from '../projects/ProjectList';
 import { connect } from 'react-redux'; //glue lib connect to redux store to react
+import { compose } from 'redux'; // connecting 2 hoc
+// which collection we need to sync with database?
+import { firestoreConnect } from 'react-redux-firebase'; // glue lib for redux to react to firebase 
+
 
 class Dashboard extends Component {
     render() {
@@ -25,8 +29,17 @@ class Dashboard extends Component {
 // send it to rootreducer project and finally state to the projects props <-
 // console.log(this.props) 
 const mapStateToProps = (state) => {
+    console.log(state);
     return {
-        projects: state.project.projects //creating property projects as props
+       // projects: state.project.projects //creating property projects as props was showing dummy data
+       projects: state.firestore.ordered.projects
     }
 }
-export default connect(mapStateToProps)(Dashboard)
+//we will use compose function to connect two higher order component
+export default compose(
+    connect(mapStateToProps),
+    firestoreConnect([
+        { collection: "projects" }
+    ])
+)(Dashboard) 
+// [ this is array] { this is object 'property'}
